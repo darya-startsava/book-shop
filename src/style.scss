@@ -1,5 +1,79 @@
-$body-color: red;
+$body-color: #fefde9;
+$background-color: #c7c4a3;
+$second-background-color: #ba883d;
+$button-color: #8eb2ac;
+$font-color: #4e4423;
+$border: #ba883d;
 
 body {
   background-color: $body-color;
+  color: $font-color;
+}
+
+button {
+  cursor: pointer;
+}
+
+.button {
+  background-color: $button-color;
+  border-radius: 10px;
+  border: 2px solid $border;
+  padding: 5px;
+}
+
+.body_wrapper {
+  width: 1400px;
+  margin: auto;
+}
+
+.body_content {
+  margin: 0 auto;
+  display: flex;
+}
+
+.books_wrapper {
+  width: 1000px;
+  display: flex;
+  flex-flow: row wrap;
+  column-gap: 20px;
+  row-gap: 20px;
+}
+
+.book_wrapper {
+  box-sizing: border-box;
+  background-color: $background-color;
+  width: 300px;
+  padding: 15px;
+  border-radius: 20px;
+  border: 2px solid $border;
+
+  .book_text_wrapper {
+    min-height: 150px;
+  }
+}
+
+.book_image_wrapper {
+  height: 240px;
+  .book_image {
+    width: 150px;
+    height: auto;
+  }
+}
+
+.book_button_wrapper {
+  display: flex;
+  column-gap: 5px;
+  justify-content: center;
+  .book_button {
+    width: 100px;
+  }
+}
+
+.bag_wrapper {
+  width: 400px;
+  background-color: $second-background-color;
+
+  .bag-title {
+    text-align: center;
+  }
 }

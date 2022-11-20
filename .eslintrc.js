@@ -12,7 +12,7 @@ module.exports = {
   rules: {
     'no-unused-vars': ['error', { vars: 'local' }],
     'prefer-const': 'error',
-    'no-console': 'error',
+     'no-console': 'off',
     'no-inner-declarations': 'off',
   },
 };
