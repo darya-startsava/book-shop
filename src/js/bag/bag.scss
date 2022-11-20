@@ -1,0 +1,25 @@
+@import '../../variables.scss';
+
+.bag_wrapper {
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid $border;
+
+  .bag_book_item {
+    position: relative;
+    background-color: $background-color;
+    padding: 0 10px;
+    border-radius: 10px;
+    border: 2px solid $second-border;
+    margin: 10px 0;
+
+    .button_remove_book {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background-color: $button-color;
+      border-radius: 5px;
+      border: 2px solid $border;
+    }
+  }
+}
