@@ -1,4 +1,6 @@
 import '../style.scss';
+import renderPopup from './overlay/overlay';
+import { showMoreAboutBook } from './listeners';
 
 async function bootstrap() {
   const books = await getBooks();
@@ -13,7 +15,7 @@ async function getBooks() {
 }
 
 function getBookLIstItem(book) {
-  const {author, title,price, imageLink} = book;
+  const { author, title, price, imageLink, description } = book;
   const divItem = document.createElement('div');
   divItem.classList.add('book_wrapper');
 
@@ -38,6 +40,7 @@ function getBookLIstItem(book) {
   buttonAddToBag.classList.add('button', 'book_button', 'book_addToBag_button');
   buttonShowMore.innerHTML = 'Show more';
   buttonAddToBag.innerHTML = 'Add to bag';
+  buttonShowMore.addEventListener('click', () => showMoreAboutBook(description));
   buttonWrapper.append(buttonShowMore, buttonAddToBag);
   h3.innerHTML = author;
   h4.innerHTML = title;
@@ -50,7 +53,7 @@ function renderBag() {
   const bagWrapper = document.createElement('section');
   bagWrapper.classList.add('bag_wrapper');
   const h2 = document.createElement('h2');
- h2.classList.add('bag-title');
+  h2.classList.add('bag-title');
   h2.innerHTML = 'Your bag';
   bagWrapper.append(h2);
   return bagWrapper;
@@ -70,6 +73,6 @@ function getContent(books) {
   books.forEach((book) => booksWrapper.append(getBookLIstItem(book)));
   bodyContent.append(booksWrapper, renderBag());
   bodyWrapper.append(h1, bodyContent);
-  fragment.append(bodyWrapper);
+  fragment.append(bodyWrapper, renderPopup());
   return fragment;
 }

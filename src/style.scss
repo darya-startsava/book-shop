@@ -1,9 +1,4 @@
-$body-color: #fefde9;
-$background-color: #c7c4a3;
-$second-background-color: #ba883d;
-$button-color: #8eb2ac;
-$font-color: #4e4423;
-$border: #ba883d;
+@import './variables.scss';
 
 body {
   background-color: $body-color;
