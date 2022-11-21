@@ -16,6 +16,14 @@ export function renderBag() {
   numberTotalPrice.innerHTML = 0;
   totalPrice.innerHTML = 'TotalPrice: ';
   totalPrice.append(numberTotalPrice);
-  bagWrapper.append(h2, bagBooksWrapper, totalPrice);
+  const confirmOrderButtonWrapper = document.createElement('div');
+  confirmOrderButtonWrapper.classList.add('confirmOrder_button_wrapper');
+  const confirmOrderButton = document.createElement('a');
+  confirmOrderButton.type = 'button';
+  confirmOrderButton.href = './order'
+  confirmOrderButton.classList.add('button', 'confirmOrder_button');
+  confirmOrderButton.innerHTML = 'Confirm order';
+  confirmOrderButtonWrapper.append(confirmOrderButton);
+  bagWrapper.append(h2, bagBooksWrapper, totalPrice, confirmOrderButtonWrapper);
   return bagWrapper;
 }

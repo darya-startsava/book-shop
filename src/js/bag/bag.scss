@@ -22,4 +22,14 @@
       border: 2px solid $border;
     }
   }
+
+  .confirmOrder_button_wrapper {
+    display: flex;
+    justify-content: center;
+
+    .confirmOrder_button {
+      width: 100px;
+      border-color: $background-color;
+    }
+  }
 }
