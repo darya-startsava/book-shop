@@ -11,19 +11,19 @@
         <div class="form_wrapper">
           <h1>Order</h1>
           <label>Name:<input id="input_name" type="text" /></label>
-          <p id="input_name_message"></p>
+          <p class="error_message" id="input_name_message"></p>
           <label>Surname:<input id="input_surname" type="text" /></label>
-          <p id="input_surname_message"></p>
+          <p class="error_message" id="input_surname_message"></p>
           <label
             >Delivery date:<input id="input_date" type="date" min="2022-11-01"
           /></label>
-          <p id="input_date_message"></p>
+          <p class="error_message" id="input_date_message"></p>
           <label>Street:<input id="input_street" type="text" /></label>
-          <p id="input_street_message"></p>
+          <p class="error_message" id="input_street_message"></p>
           <label>House number:<input id="input_house" type="text" /></label>
-          <p id="input_house_message"></p>
+          <p class="error_message" id="input_house_message"></p>
           <label>Flat number:<input id="input_flat" type="text" /></label>
-          <p id="input_flat_message"></p>
+          <p class="error_message" id="input_flat_message"></p>
           <div>
             Choose the payment type
             <input type="radio" name="payment" id="cash" value="cash" checked />
@@ -42,7 +42,7 @@
             <input type="checkbox" id="pen" name="gift" />
             <label for="pen">branded pen or pencil</label>
           </div>
-          <p id="checkboxes_gift_message"></p>
+          <p class="error_message" id="checkboxes_gift_message"></p>
           <button
             id="complete_order_button"
             class="button complete_order_button"
