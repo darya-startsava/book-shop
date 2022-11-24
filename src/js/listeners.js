@@ -5,7 +5,6 @@ export function closePopup() {
 export function showMoreAboutBook(description) {
   document.getElementById('overlay').classList.add('show');
   document.getElementById('popupText').innerHTML = description;
-  console.log(description);
 }
 
 export function addToBag(book) {
@@ -35,23 +34,56 @@ function removeBook(e) {
     +document.getElementById('bag_total_price').innerHTML - +price;
   bookElement.remove();
 }
+
+let isValidName = false;
+let isValidSurname = false;
+let isValidDeliveryDate = false;
+let isValidStreet = false;
+let isValidHouse = false;
+let isValidFlat = false;
+let isValidGift = true;
+const buttonCompleteOrder = document.getElementById('complete_order_button');
+
+function checkIsValidForm() {
+  if (
+    isValidName &&
+    isValidSurname &&
+    isValidDeliveryDate &&
+    isValidStreet &&
+    isValidHouse &&
+    isValidFlat &&
+    isValidGift
+  ) {
+    buttonCompleteOrder.disabled = false;
+  } else {
+    buttonCompleteOrder.disabled = true;
+  }
+}
+
 export function inputStringValidation(length) {
   let type = 'name';
   if (length === 5) {
     type = 'surname';
   }
+
   const message = document.getElementById(`input_${type}_message`);
   const errorMessage = `The field is invalid. Please enter at least ${length} letter symbols without space`;
   const value = document.getElementById(`input_${type}`).value;
   if (!value) {
     message.innerHTML = errorMessage;
-  } else if (value.length < length) {
+  } else if (value?.length < length) {
     message.innerHTML = errorMessage;
-  } else if (value.match(/[a-z]/gi).length !== value.length) {
+  } else if (value?.match(/[a-z]/gi).length !== value.length) {
     message.innerHTML = errorMessage;
   } else {
     message.innerHTML = '';
   }
+  if (message.innerHTML) {
+    type === 'name' ? (isValidName = false) : (isValidSurname = false);
+  } else {
+    type === 'name' ? (isValidName = true) : (isValidSurname = true);
+  }
+  checkIsValidForm();
 }
 export function inputDateValidation() {
   let isCorrect = true;
@@ -75,6 +107,8 @@ export function inputDateValidation() {
     isCorrect = false;
   }
   message.innerHTML = isCorrect ? '' : errorMessage;
+  isValidDeliveryDate = isCorrect ? true : false;
+  checkIsValidForm();
 }
 
 export function inputStreetValidation() {
@@ -89,6 +123,8 @@ export function inputStreetValidation() {
   } else {
     message.innerHTML = '';
   }
+  isValidStreet = message.innerHTML ? false : true;
+  checkIsValidForm();
 }
 
 export function inputHouseValidation() {
@@ -100,4 +136,30 @@ export function inputHouseValidation() {
   } else if (!isNaN(Number(value) && Number(value) > 0)) {
     message.innerHTML = '';
   } else message.innerHTML = errorMessage;
+  isValidHouse = message.innerHTML ? false : true;
+  checkIsValidForm();
+}
+
+export function inputFlatValidation() {
+  const message = document.getElementById('input_flat_message');
+  const errorMessage = 'The field is invalid. Please enter only positive numbers';
+  const value = document.getElementById('input_flat').value;
+  if (!value) {
+    message.innerHTML = errorMessage;
+  } else if (value.match(/[0-9-]/g).length === value.length && value[0] !== '-') {
+    message.innerHTML = '';
+  } else message.innerHTML = errorMessage;
+  isValidFlat = message.innerHTML ? false : true;
+  checkIsValidForm();
+}
+
+export function checkboxesGiftValidation() {
+  const message = document.getElementById('checkboxes_gift_message');
+  const errorMessage = 'Please choose no more than 2 gifts';
+  const chosen = document.querySelectorAll('input[name=gift]:checked');
+  if (chosen.length > 2) {
+    message.innerHTML = errorMessage;
+  } else message.innerHTML = '';
+  isValidGift = message.innerHTML ? false : true;
+  checkIsValidForm();
 }
