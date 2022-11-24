@@ -41,5 +41,17 @@ a {
     .complete_order_button {
       width: 100px;
     }
+
+    input[type='text'] {
+      border-radius: 5px;
+    }
+
+    .error {
+      border: 2px solid red;
+    }
+
+    .error_message {
+      color: red;
+    }
   }
 }

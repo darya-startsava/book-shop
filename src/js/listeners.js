@@ -80,8 +80,10 @@ export function inputStringValidation(length) {
   }
   if (message.innerHTML) {
     type === 'name' ? (isValidName = false) : (isValidSurname = false);
+    document.getElementById(`input_${type}`).classList.add('error');
   } else {
     type === 'name' ? (isValidName = true) : (isValidSurname = true);
+    document.getElementById(`input_${type}`).classList.remove('error');
   }
   checkIsValidForm();
 }
@@ -108,6 +110,9 @@ export function inputDateValidation() {
   }
   message.innerHTML = isCorrect ? '' : errorMessage;
   isValidDeliveryDate = isCorrect ? true : false;
+  isCorrect
+    ? document.getElementById('input_date').classList.remove('error')
+    : document.getElementById('input_date').classList.add('error');
   checkIsValidForm();
 }
 
@@ -124,6 +129,9 @@ export function inputStreetValidation() {
     message.innerHTML = '';
   }
   isValidStreet = message.innerHTML ? false : true;
+  isValidStreet
+    ? document.getElementById('input_street').classList.remove('error')
+    : document.getElementById('input_street').classList.add('error');
   checkIsValidForm();
 }
 
@@ -137,6 +145,9 @@ export function inputHouseValidation() {
     message.innerHTML = '';
   } else message.innerHTML = errorMessage;
   isValidHouse = message.innerHTML ? false : true;
+  isValidHouse
+    ? document.getElementById('input_house').classList.remove('error')
+    : document.getElementById('input_house').classList.add('error');
   checkIsValidForm();
 }
 
@@ -146,10 +157,16 @@ export function inputFlatValidation() {
   const value = document.getElementById('input_flat').value;
   if (!value) {
     message.innerHTML = errorMessage;
-  } else if (value.match(/[0-9-]/g).length === value.length && value[0] !== '-') {
+  } else if (
+    value?.match(/[0-9-]/g)?.length === value?.length &&
+    value?.[0] !== '-'
+  ) {
     message.innerHTML = '';
   } else message.innerHTML = errorMessage;
   isValidFlat = message.innerHTML ? false : true;
+  isValidFlat
+    ? document.getElementById('input_flat').classList.remove('error')
+    : document.getElementById('input_flat').classList.add('error');
   checkIsValidForm();
 }
 
@@ -157,7 +174,7 @@ export function checkboxesGiftValidation() {
   const message = document.getElementById('checkboxes_gift_message');
   const errorMessage = 'Please choose no more than 2 gifts';
   const chosen = document.querySelectorAll('input[name=gift]:checked');
-  if (chosen.length > 2) {
+  if (chosen?.length > 2) {
     message.innerHTML = errorMessage;
   } else message.innerHTML = '';
   isValidGift = message.innerHTML ? false : true;
