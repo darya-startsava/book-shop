@@ -2,8 +2,14 @@
 
 .bag_wrapper {
   padding: 10px;
-  border-radius: 10px;
-  border: 2px solid $border;
+  background-color: $body-color;
+
+  .bag_books_wrapper {
+    min-height: 100px;
+    border-radius: 10px;
+    border: 2px solid $second-border;
+    background-color: $second-background-color;
+  }
 
   .bag_book_item {
     position: relative;

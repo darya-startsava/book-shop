@@ -15,14 +15,22 @@ async function getBooks() {
   return await result.json();
 }
 
-function getBookLIstItem(book) {
+function drag(ev) {
+  ev?.dataTransfer.setData('text', ev.target.id);
+  
+}
+
+function getBookLIstItem(book, index) {
   const { author, title, price, imageLink, description } = book;
   const divItem = document.createElement('div');
   divItem.classList.add('book_wrapper');
-
+  divItem.id = index;
+  divItem.draggable = true;
+  divItem.addEventListener('dragstart', (ev) => drag(ev));
   const imageWrapper = document.createElement('div');
   imageWrapper.classList.add('book_image_wrapper');
   const image = document.createElement('img');
+  image.draggable = false;
   image.src = imageLink;
   image.alt = '';
   image.classList.add('book_image');
@@ -62,7 +70,7 @@ function getContent(books) {
   const booksWrapper = document.createElement('section');
   booksWrapper.classList.add('books_wrapper');
 
-  books.forEach((book) => booksWrapper.append(getBookLIstItem(book)));
+  books.forEach((book, index) => booksWrapper.append(getBookLIstItem(book, index)));
   bodyContent.append(booksWrapper, renderBag());
   bodyWrapper.append(h1, bodyContent);
   fragment.append(bodyWrapper, renderPopup());
