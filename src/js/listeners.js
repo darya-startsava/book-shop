@@ -180,3 +180,19 @@ export function checkboxesGiftValidation() {
   isValidGift = message.innerHTML ? false : true;
   checkIsValidForm();
 }
+
+export function showOrderInformation() {
+  document.getElementById('order_overlay').classList.add('show');
+  document.getElementById('order_address').innerHTML = `Address: ${
+    document.getElementById('input_street').value
+  } ${document.getElementById('input_house').value} ${
+    document.getElementById('input_street').value
+  }`;
+  document.getElementById('order_customer').innerHTML = `Customer: ${
+    document.getElementById('input_name').value
+  } ${document.getElementById('input_surname').value}`;
+}
+
+export function orderInformationClose() {
+  document.getElementById('order_overlay').classList.remove('show');
+}
